@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29-dic-2016, 12:57:21
+    Author     : jlotito
+*/
+* { margin: auto; padding: 0; font-family: arial;  }
+
+/*body: cuerpo de la página*/
+body { 
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/*cabecera*/
+header { background-color: #fffafa; width: 70%; margin-top: 5px; }
+header h1 { text-align: center; color: navy; padding: 5px; font-size: 5em; }
+header h2 { text-align: center; color: #663366; padding: 0.5em; font-size: 1.2em; }
+
+/*principal: section:*/
+section { width: 85%; float: right; }
+section h1 { text-align: center; padding: 0.5em; color: olive; font-size: 1.4em; }
+section h2 { text-align: center; padding: 0.5em; color: grey; font-size: 1.2em; }
+section h3 { text-align: left; padding: 0.3em 3em; color: #663366; font-size: 1em;  }
+
+/*artículos: article*/
+article { margin: 0.5em 3em; padding: 0.5em 2em; background-color: white; border: 3px double navy; }
+article.question { display: none }
+article.response { display: none }
+article.responseTRUE { background-color: #7a9e42; }
+article p { text-align: justify; font-size: 4em }
+article.question p { text-align: justify; font-size: 4em }
+article.response p { text-align: justify; font-size: 3.5em }
+
+/*propaganda: aside*/
+aside { width: 15%; float: left; }
+#questresult,#totresult,#action { margin: 20px; padding: 10px; border: 2px solid blue; background-color: white; }
+#questresult h1 { font-size: 1.1em; text-align: left; padding: 0.2em 0em; }
+#totresult h1 { font-size: 1.1em; text-align: left; padding: 0.2em 0em; }
+
+/*div: totalresult*/
+#totalresults {}
+div.popUP {
+    position: fixed;
+    width: 1000px; /* Set your desired with */
+    z-index: 2; /* Make sure its above other items. */
+    top: 250px;
+    left: 650px;
+    margin-top: -10%; /* Changes with height. */
+    margin-left: -35%; /* Your width divided by 2. */
+
+    /* You will not need the below, its only for styling   purposes. */
+    padding: 10px;
+    border: 2px solid #555555;
+    background-color: #ccc;
+    border-radius: 5px;
+    display: none;
+}
+div.popUP header {background-color: #fffafa; width: 70%; margin-top: 5px}
+div.popUP header h1 { text-align: center; color: navy; padding: 1px; font-size: 2em; }
+div.popUP section { width: 960px}
+div.popUP section article { margin: 0.5em 1em; padding: 0.5em 1em; background-color: white; border: 3px double navy; }
+div.popUP section article div { width: 250px; display: inline-block}
+div.popUP section article div p { text-align: center; font-size: 2em }
+div.popUP section article.firstROW { background-color: #999db1; color: azure }
+div.popUP section article.correct { background-color: #7a9e42;}
+div.popUP section article.false { background-color: #b53030;}
+
+/*navegador*/
+#navigation { position: fixed; width: 100%; top:-35px}
+#navigation #leftArrow { float: left; margin-left: 15px }
+#navigation #rightArrow { float: right; margin-right: 15px }
+#navigation div a { text-align: center; color: navy; padding: 1px; font-size: 10em; font-weight: bold; text-decoration: none }
+
