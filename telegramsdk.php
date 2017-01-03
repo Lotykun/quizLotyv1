@@ -44,35 +44,29 @@
                 }
             break;
             default :
-                $parts = explode ("pregunta",$porciones[1]);
-                if (count($parts)>0){
-                    $question_id = $parts[1];
-                    $user = getuserBYphone($fromNumber);
-                    if (!$user){
+                $question_id = $porciones[2];
+                $user = getuserBYphone($fromNumber);
+                if (!$user){
+                    $error = TRUE;
+                    $errorMsg = "ERROR - EL USUARIO CON NUMERO $fromNumber NO EXISTE, CREA PRIMERO EL USUARIO CON 'QuizLotyv1 user create'";
+                } else {
+                    $respuesta = getRespuestaBYLetra($question_id, strtoupper ($porciones[3]));
+                    if (!$respuesta){
                         $error = TRUE;
-                        $errorMsg = "ERROR - EL USUARIO CON NUMERO $fromNumber NO EXISTE, CREA PRIMERO EL USUARIO CON 'QuizLotyv1 user create'";
+                        $errorMsg = "ERROR - LA RESPUESTA PROPORCIONADA NO EXISTE PARA ESTA PREGUNTA";
                     } else {
-                        $respuesta = getRespuestaBYLetra($question_id, strtoupper ($porciones[2]));
-                        if (!$respuesta){
-                            $error = TRUE;
-                            $errorMsg = "ERROR - LA RESPUESTA PROPORCIONADA NO EXISTE PARA ESTA PREGUNTA";
-                        } else {
-                            if (!resultadoExist($user[0]['ID'],$question_id,$respuesta[0]['ID'])){
-                                if (createResultado($user[0]['ID'], $question_id, $respuesta[0]['ID'])){
-                                    $okMsg = "OK - RESPUESTA ALMACENADA CORRECTAMENTE";
-                                } else {
-                                    $error = TRUE;
-                                    $errorMsg = "ERROR - EN EL ALMACENAMIENTO DE LA RESPUESTA";
-                                }
+                        if (!resultadoExist($user[0]['ID'],$question_id,$respuesta[0]['ID'])){
+                            if (createResultado($user[0]['ID'], $question_id, $respuesta[0]['ID'])){
+                                $okMsg = "OK - RESPUESTA ALMACENADA CORRECTAMENTE";
                             } else {
                                 $error = TRUE;
-                                $errorMsg = "ERROR - YA HAS RESPONDIDO PARA ESTA PREGUNTA";
+                                $errorMsg = "ERROR - EN EL ALMACENAMIENTO DE LA RESPUESTA";
                             }
+                        } else {
+                            $error = TRUE;
+                            $errorMsg = "ERROR - YA HAS RESPONDIDO PARA ESTA PREGUNTA";
                         }
                     }
-                } else {
-                    $error = TRUE;
-                    $errorMsg = "ERROR - RESPUESTA MAL FORMADA respete el formato 'QuizLotyv1 preguntaX respuesta'";
                 }
             break;
         }

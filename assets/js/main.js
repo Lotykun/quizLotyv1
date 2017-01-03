@@ -47,6 +47,8 @@ $(document).ready(function() {
                 //window.location.replace("http://stackoverflow.com");
                 var data = new FormData();
                 var question_id = getUrlParameter('question');
+                
+                alert("TIEMPO ACABADO");
 
                 data.append('question_id',question_id);
                 
@@ -60,7 +62,7 @@ $(document).ready(function() {
                     dataType:'json',
                     success:function(response){
                         if (response == "OK - PROCESO COMPLETADO"){
-                            alert("TIEMPO ACABADO");
+                            alert("DATOS GUARDADOS");
                             window.location.href = window.location.href + "&true";
                         } else {
                             alert("ERROR - HA HABIDO ALGUN ERROR");
